@@ -1,12 +1,4 @@
-@icon( "res://player/states/state.svg" )
-class_name PlayerState extends Node
-
-var player : Player
-var next_state : PlayerState
-
-#region /// state references
-
-#endregion
+class_name PlayerStateRun extends PlayerState
 
 func init() -> void:
 	pass
