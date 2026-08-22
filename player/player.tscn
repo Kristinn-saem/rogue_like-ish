@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://brn6fids4xc84" path="res://player/scrpits/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://ca6uw50dnm4xp" path="res://player/states/idle.gd" id="2_g1dw6"]
 [ext_resource type="Script" uid="uid://dkt8ufv45teqs" path="res://player/states/run.gd" id="3_yw30f"]
+[ext_resource type="Script" uid="uid://dsgs8ohw37n27" path="res://player/states/jump.gd" id="4_qjkh3"]
+[ext_resource type="Script" uid="uid://d01eep8jvah8g" path="res://player/states/fall.gd" id="5_g6k8r"]
+[ext_resource type="Script" uid="uid://pnu0pv5fas6m" path="res://player/states/crouch.gd" id="6_g6k8r"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8frfa"]
 size = Vector2(18, 48)
@@ -10,21 +13,52 @@ size = Vector2(18, 48)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8frfa"]
 size = Vector2(16, 46)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6k8r"]
+size = Vector2(16, 30)
+
 [node name="Player" type="CharacterBody2D" unique_id=634571834]
 script = ExtResource("1_oul6g")
+
+[node name="States" type="Node" parent="." unique_id=741146270]
+
+[node name="Idle" type="Node" parent="States" unique_id=390316166]
+unique_name_in_owner = true
+script = ExtResource("2_g1dw6")
+
+[node name="Run" type="Node" parent="States" unique_id=2016402969]
+unique_name_in_owner = true
+script = ExtResource("3_yw30f")
+
+[node name="Jump" type="Node" parent="States" unique_id=1595796185]
+unique_name_in_owner = true
+script = ExtResource("4_qjkh3")
+
+[node name="Fall" type="Node" parent="States" unique_id=196591661]
+unique_name_in_owner = true
+script = ExtResource("5_g6k8r")
+
+[node name="Crouch" type="Node" parent="States" unique_id=1713950415]
+unique_name_in_owner = true
+script = ExtResource("6_g6k8r")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=421252457]
 position = Vector2(0, -24)
 texture = SubResource("PlaceholderTexture2D_8frfa")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1891536008]
+[node name="CollisionStand" type="CollisionShape2D" parent="." unique_id=1891536008]
 position = Vector2(0, -23)
 shape = SubResource("RectangleShape2D_8frfa")
 
-[node name="States" type="Node" parent="." unique_id=741146270]
+[node name="CollisionCrouch" type="CollisionShape2D" parent="." unique_id=750348658]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_g6k8r")
+disabled = true
 
-[node name="Idle" type="Node" parent="States" unique_id=390316166]
-script = ExtResource("2_g1dw6")
-
-[node name="Run" type="Node" parent="States" unique_id=2016402969]
-script = ExtResource("3_yw30f")
+[node name="Label" type="Label" parent="." unique_id=897211453]
+offset_left = -16.0
+offset_top = -72.0
+offset_right = 16.0
+offset_bottom = -56.0
+theme_override_font_sizes/font_size = 11
+text = "label"
+horizontal_alignment = 1
