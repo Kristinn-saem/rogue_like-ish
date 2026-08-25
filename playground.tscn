@@ -55,6 +55,8 @@ size = Vector2(64, 64)
 
 [node name="Player" parent="." unique_id=634571834 instance=ExtResource("1_rupst")]
 position = Vector2(255, 81)
+collision_layer = 0
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1276310432]
 position = Vector2(240, 256)
@@ -127,6 +129,8 @@ scale = Vector2(-1.6338722, 0.19930992)
 texture = SubResource("GradientTexture2D_1s8fd")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="OneWayPlatform" unique_id=1227562343]
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OneWayPlatform/StaticBody2D" unique_id=704786778]
 scale = Vector2(0.99999994, 0.99999994)

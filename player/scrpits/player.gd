@@ -7,7 +7,8 @@ const DEBUG_JUMP_INDICATOR = preload("uid://dq318phfe1kny")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision_stand: CollisionShape2D = $CollisionStand
 @onready var collision_crouch: CollisionShape2D = $CollisionCrouch
-
+@onready var one_way_platform_shape_cast: ShapeCast2D = $OneWayPlatformShapeCast
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 #endregion
 
 #region /// Export Variables
@@ -40,6 +41,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	pass
 
 func _process( delta: float) -> void:
+	update_direction()
 	change_state( current_state.process( delta) )
 	pass
 
@@ -90,10 +92,17 @@ func change_state( new_state : PlayerState) -> void:
 
 
 func update_direction() -> void:
-	#var prev_direction : Vector2 = direction
+	var prev_direction : Vector2 = direction
+	
 	var x_axis = Input.get_axis("left", "right")
 	var y_axis = Input.get_axis("up", "down")
 	direction = Vector2(x_axis, y_axis)
+	
+	if prev_direction.x != direction.x:
+		if direction.x < 0:
+			sprite.flip_h = true
+		elif direction.x > 0:
+			sprite.flip_h = false
 	pass
 
 
